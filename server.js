@@ -4,7 +4,7 @@
 * of this assignment has been copied manually or electronically from any other source
 * (including 3rd party web sites) or distributed to other students.
 *
-* Name: Saroj Niraula Student ID: 154184238 Date: 6/14/2024
+* Name:  Student_ID:  Date: 
 *
 ********************************************************************************/
 
@@ -40,7 +40,7 @@ app.get("/students", (req, res) => {
             });
     } else {
         collegeData.getAllStudents()
-            .then((students) => {   
+            .then((students) => {
                 res.json(students);
             })
             .catch((err) => {
