@@ -52,11 +52,17 @@ app.get("/students", (req, res) => {
 app.get("/tas", (req, res) => {
     collegeData.getTAs()
         .then((tas) => {
-            res.json(tas);
+            res.json(tas);  
         })
         .catch((err) => {
             res.json({ message: "No results" });
         });
+});
+
+app.get('/student/:num', (req, res) => {
+    collegeData.getStudentsByNum(req.params.num)
+        .then(data => res.json(data))
+        .catch(err => res.json({ message: err }));
 });
 
 app.get('/courses', (req, res) => {
@@ -65,6 +71,10 @@ app.get('/courses', (req, res) => {
     }).catch(err => {
         res.json({ message: err });
     });
+});
+
+app.use((req, res, next) => {
+    res.status(404).sendFile(path.join(__dirname, 'views', '404error.html'));
 });
 
 collegeData.initialize()

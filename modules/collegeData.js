@@ -63,9 +63,7 @@ const getCourses = () => {
 };
 
 const getStudentsByCourse = (course) => {
-
     const selectedStudents = dataCollection.students.filter( student => student.course === parseInt(course));
-
     return new Promise((resolve, reject) => {
         if (selectedStudents.length > 0) {
             resolve(selectedStudents);
@@ -76,7 +74,7 @@ const getStudentsByCourse = (course) => {
 }
 
 const getStudentsByNum = (num) => {
-    const selectedStudents = dataCollection.students.filter( student => student.studentNum === num);
+    const selectedStudents = dataCollection.students.filter( student => student.studentNum === parseInt(num));
     return new Promise((resolve, reject) => {
         if (selectedStudents.length > 0) {
             resolve(selectedStudents);
