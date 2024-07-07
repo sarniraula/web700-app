@@ -86,11 +86,31 @@ const getStudentsByNum = (num) => {
     })
 }
 
+function addStudent(studentData) {
+    return new Promise((resolve, reject) => {
+        console.log('Student Data',studentData);
+        studentData.TA = studentData.TA !== undefined;
+        studentData.studentNum = dataCollection.students.length + 1;
+        dataCollection.students.push(studentData);
+        console.log('Data Collection',dataCollection.students[dataCollection.students.length - 1]);
+
+        fs.writeFile('./data/students.json', JSON.stringify(dataCollection.students, null, 2), (err) => {
+            if (err) {
+                console.log('Error',err);
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
+
 module.exports = {
     initialize,
     getAllStudents,
     getTAs,
     getCourses,
     getStudentsByCourse,
-    getStudentsByNum
+    getStudentsByNum,
+    addStudent
 };
