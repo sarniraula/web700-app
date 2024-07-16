@@ -13,6 +13,10 @@ var express = require("express");
 const path = require('path');
 var app = express();
 
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static('public'));
+
 const collegeData = require('./modules/collegeData');
 
 
@@ -28,6 +32,17 @@ app.get("/htmlDemo", (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'htmlDemo.html'));
 });
 
+app.get('/students/add', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'addStudent.html'));
+});
+
+app.post('/students/add', (req, res) => {
+    collegeData.addStudent(req.body).then(() => {
+        res.redirect('/students');
+    }).catch(err => {
+        res.status(500).send("Unable to add student");
+    });
+});
 
 app.get("/students", (req, res) => {
     if (req.query.course) {
