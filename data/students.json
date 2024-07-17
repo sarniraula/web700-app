@@ -3118,53 +3118,5 @@
     "TA": false,
     "status": "Part Time",
     "course": 5
-  },
-  {
-    "firstName": "Saroj",
-    "lastName": "Niraula",
-    "email": "skullc162@gmail.com",
-    "addressStreet": "74 Morning Dew Rd",
-    "addressCity": "Scarborou",
-    "addressProvince": "ontttt",
-    "status": "Part Time",
-    "course": "1",
-    "TA": false,
-    "studentNum": 261
-  },
-  {
-    "firstName": "Saroj",
-    "lastName": "Niraula",
-    "email": "skullc162@gmail.com",
-    "addressStreet": "74 Morning Dew Rd",
-    "addressCity": "tototo",
-    "addressProvince": "bobobobo",
-    "TA": true,
-    "status": "Full Time",
-    "course": "7",
-    "studentNum": 262
-  },
-  {
-    "firstName": "Saroj",
-    "lastName": "Niraula",
-    "email": "sar.niraula@gmail.com",
-    "addressStreet": "Scarborough",
-    "addressCity": "Toronto",
-    "addressProvince": "ON",
-    "TA": true,
-    "status": "Full Time",
-    "course": "9",
-    "studentNum": 263
-  },
-  {
-    "firstName": "Saroj",
-    "lastName": "Niraula",
-    "email": "sdfdsfdsfsdf@gmail.com",
-    "addressStreet": "19 Coxworth Crescent",
-    "addressCity": "Toronto",
-    "addressProvince": "ON",
-    "TA": true,
-    "status": "Full Time",
-    "course": "1",
-    "studentNum": 264
   }
 ]
