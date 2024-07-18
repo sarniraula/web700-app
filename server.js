@@ -17,7 +17,9 @@ var app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(express.static(path.join(path.resolve(), 'public')));
+
 
 const collegeData = require('./modules/collegeData');
 
@@ -42,7 +44,7 @@ app.post('/students/add', (req, res) => {
     collegeData.addStudent(req.body).then(() => {
         res.redirect('/students');
     }).catch(err => {
-        res.status(500).send("Unable to add student");
+        res.redirect('/students');
     });
 });
 
