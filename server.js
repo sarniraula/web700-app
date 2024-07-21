@@ -127,7 +127,26 @@ app.get('/student/:num', (req, res) => {
 });
 
 app.post('/student/update', (req, res) => {
-    collegeData.updateStudent(req.body)
+    let studentNum = parseInt(req.body.studentNum, 10);
+    let course = parseInt(req.body.course, 10);
+
+    if (isNaN(studentNum) || isNaN(course)) {
+        return res.status(400).send('Invalid input: studentNum and course must be numbers');
+    }
+
+    const updatedStudent = {
+        studentNum: studentNum,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        addressStreet: req.body.addressStreet,
+        addressCity: req.body.addressCity,
+        addressProvince: req.body.addressProvince,
+        TA: req.body.TA === 'on',
+        status: req.body.status,
+    };
+
+    collegeData.updateStudent(updatedStudent)
         .then(() => {
             res.redirect('/students');
         })
