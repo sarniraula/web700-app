@@ -3,8 +3,8 @@
 	<head>
 		<title>WEB700</title>
 		<meta charset="UTF-8" />
-		<link rel="stylesheet" href="/css/theme.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/theme.css">
 	</head>
 
 	<body>
@@ -16,44 +16,24 @@
 			
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-					<li class="nav-item active"><a class="nav-link" href="/about">About</a></li>
-					<li class="nav-item"><a class="nav-link" href="/htmlDemo">Html Demo</a></li>
+					{{!-- <li class="nav-item active"><a class="nav-link" href="/">Home</a></li> --}}
+					{{#navLink "/"}}Home{{/navLink}}
+					{{!-- <li class="nav-item"><a class="nav-link" href="/about">About</a></li> --}}
+					{{#navLink "/about"}}About{{/navLink}}
+					{{!-- <li class="nav-item"><a class="nav-link" href="/htmlDemo">Html Demo</a></li> --}}
+					{{#navLink "/htmlDemo"}}Html Demo{{/navLink}}
 				</ul>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="/students/add">Add Student</a></li>
 					<li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
-					<li class="nav-item"><a class="nav-link" href="/tas">Teaching Assistants</a></li>
+					{{!-- <li class="nav-item"><a class="nav-link" href="/tas">Teaching Assistants</a></li> --}}
 					<li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
 				</ul>
 			</div>
 		</nav>
 
 		<div class="container">
-			<div class="row">
-				<main class="col-md-12">
-					<div class="py-4 text-center">
-						<h1>Welcome to My About Page</h1>
-						<p>
-							Hello and welcome! Here, you'll learn about my journey, experiences, and aspirations as a student in the dynamic world of web development.
-						</p>
-					</div>
-					<div class="py-4 text-center">
-						<h2>Personal Information</h2>
-						<p>
-							Allow me to introduce myself:
-						</p>
-						<div class="row">
-							<div class="col-md-4 offset-md-4">
-								<img src="https://images.pexels.com/photos/25935100/pexels-photo-25935100/free-photo-of-work-coffee.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="My Photo" class="img-fluid mb-3">
-							</div>
-						</div>
-						<p>
-							My name is <span>Saroj Niraula. </span> I am currently enrolled in the <span>WEB700</span> course, a program that has provided me with a solid foundation in JavaScript and best coding practices. I am passionate about exploring new technologies and eager to gain hands-on experience in the IT field. My journey is driven by a love for learning and a desire to create innovative solutions.
-						</p>
-					</div>
-				</main>				
-			</div>
+            {{{body}}} <!-- This is where the content will be injected -->
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

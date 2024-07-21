@@ -12,8 +12,33 @@
 
 var HTTP_PORT = process.env.PORT || 8080;
 var express = require("express");
+const exphbs = require('express-handlebars');
 const path = require('path');
 var app = express();
+
+// This will tell our server that any file with the “.hbs” 
+// extension (instead of “.html”) will use the handlebars “engine” (template engine).
+app.engine('.hbs', exphbs.engine({ 
+    extname: '.hbs',
+    helpers: {
+        navLink: function(url, options){
+            return '<li' +
+            ((url == app.locals.activeRoute) ? ' class="nav-item active" ' : ' class="nav-item" ') +
+            '><a class="nav-link" href="' + url + '">' + options.fn(this) + '</a></li>';
+        },
+        equal: function (lvalue, rvalue, options) {
+            if (arguments.length < 3)
+            throw new Error("Handlebars Helper equal needs 2 parameters");
+            if (lvalue != rvalue) {
+            return options.inverse(this);
+            } else {
+            return options.fn(this);
+            }
+        }
+    }
+}));
+
+app.set('view engine', '.hbs');
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,17 +48,26 @@ app.use(express.static(path.join(path.resolve(), 'public')));
 
 const collegeData = require('./modules/collegeData');
 
+// Middleware to set the active route
+app.use(function(req,res,next){
+    let route = req.path.substring(1);
+    app.locals.activeRoute = "/" + (isNaN(route.split('/')[1]) ? route.replace(/\/(?!.*)/, "") : route.replace(/\/(.*)/, ""));
+    next();
+   });
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'home.html'));
+    // res.sendFile(path.join(__dirname, 'views', 'home.html'));
+    res.render('home');
 });
 
 app.get("/about", (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'about.html'));
+    // res.sendFile(path.join(__dirname, 'views', 'about.html'));
+    res.render('about');
 });
 
 app.get("/htmlDemo", (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'htmlDemo.html'));
+    // res.sendFile(path.join(__dirname, 'views', 'htmlDemo.html'));
+    res.render('htmlDemo');
 });
 
 app.get('/students/add', (req, res) => {
@@ -59,37 +93,67 @@ app.get("/students", (req, res) => {
             });
     } else {
         collegeData.getAllStudents()
-            .then((students) => {
-                res.json(students);
+            .then((data) => {
+                // res.json(students);
+                res.render("students", {students: data}); 
             })
             .catch((err) => {
-                res.json({ message: "No results" });
+                // res.json({ message: "No results" });
+                res.render("students", {message: "no results"});
             });
     }
 });
 
-app.get("/tas", (req, res) => {
-    collegeData.getTAs()
-        .then((tas) => {
-            res.json(tas);  
-        })
-        .catch((err) => {
-            res.json({ message: "No results" });
-        });
-});
+// app.get("/tas", (req, res) => {
+//     collegeData.getTAs()
+//         .then((tas) => {
+//             res.json(tas);  
+//         })
+//         .catch((err) => {
+//             res.json({ message: "No results" });
+//         });
+// });
 
 app.get('/student/:num', (req, res) => {
     collegeData.getStudentsByNum(req.params.num)
-        .then(data => res.json(data))
-        .catch(err => res.json({ message: err }));
+        .then(data => {
+            // res.json(data))
+            res.render("student", {student: data[0]});
+        })
+        .catch(err => {
+            // res.json({ message: err })
+            res.render("student", {message: "no results"});
+        });
+});
+
+app.post('/student/update', (req, res) => {
+    collegeData.updateStudent(req.body)
+        .then(() => {
+            res.redirect('/students');
+        })
+        .catch(err => {
+            res.status(500).send("Unable to update student: " + err);
+        });
 });
 
 app.get('/courses', (req, res) => {
     collegeData.getCourses().then(data => {
-        res.json(data);
+        // res.json(data);
+        res.render("courses", {courses: data});
     }).catch(err => {
-        res.json({ message: err });
+        // res.json({ message: err });
+        res.render("courses", {message: "no results"});
     });
+});
+
+app.get('/course/:id', (req, res) => {
+    collegeData.getCourseById(req.params.id)
+        .then(data => {
+            res.render("course", {course: data[0]});
+        })
+        .catch(err => {
+            res.render("course",{ message: "no results" });
+        });
 });
 
 app.use((req, res, next) => {

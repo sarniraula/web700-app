@@ -122,8 +122,13 @@ a {
 a:hover {
     color: #2575fc;
     text-decoration: none;
-
 }
+
+.navbar-nav .nav-item.active .nav-link {
+    background-color: #007bff; 
+    color: #fff !important; 
+    border-radius: 5px; 
+  }
 
 legend {
     padding-top: 10px;
@@ -183,3 +188,14 @@ legend {
 .styled-list a:hover {
     color: #0056b3;
 }
+
+.image-container {
+    display: flex;
+    justify-content: space-between;
+}
+.image-container img {
+    width: 300px;
+    height: auto;
+    margin-bottom: 10px; 
+}
+

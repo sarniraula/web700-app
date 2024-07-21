@@ -1,6 +1,6 @@
 [
   {
-    "studentNum": 1,
+    "studentNum": "1",
     "firstName": "Foster",
     "lastName": "Thorburn",
     "email": "fthorburn0@mySeneca.ca",
@@ -9,7 +9,7 @@
     "addressProvince": "ON",
     "TA": true,
     "status": "Full Time",
-    "course": 2
+    "course": "2"
   },
   {
     "studentNum": 2,
@@ -240,16 +240,16 @@
     "course": 1
   },
   {
-    "studentNum": 21,
-    "firstName": "Rozalie",
+    "studentNum": "21",
+    "firstName": "Rozalie Singh",
     "lastName": "Dron",
     "email": "rdronk@mySeneca.ca",
     "addressStreet": "29843 Luster Terrace",
-    "addressCity": "Toronto",
+    "addressCity": "Scarborough",
     "addressProvince": "ON",
     "TA": true,
     "status": "Full Time",
-    "course": 6
+    "course": "6"
   },
   {
     "studentNum": 22,
