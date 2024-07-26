@@ -6,7 +6,7 @@
 *
 * Name: Saroj Niraula Student ID: 154184238 Date: 07/16/2024
 *
-* Online (Vercel) Link: https://web700-app-gray.vercel.app
+* Online (Vercel) Link: https://web700-app.vercel.app/
 *
 ********************************************************************************/
 
@@ -39,6 +39,7 @@ app.engine('.hbs', exphbs.engine({
 }));
 
 app.set('view engine', '.hbs');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -71,7 +72,8 @@ app.get("/htmlDemo", (req, res) => {
 });
 
 app.get('/students/add', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'addStudent.html'));
+    res.render('addStudent');
+    // res.sendFile(path.join(__dirname, 'views', 'addStudent.html'));
 });
 
 app.post('/students/add', (req, res) => {
@@ -144,6 +146,7 @@ app.post('/student/update', (req, res) => {
         addressProvince: req.body.addressProvince,
         TA: req.body.TA === 'on',
         status: req.body.status,
+        course: course
     };
 
     collegeData.updateStudent(updatedStudent)
@@ -151,7 +154,8 @@ app.post('/student/update', (req, res) => {
             res.redirect('/students');
         })
         .catch(err => {
-            res.status(500).send("Unable to update student: " + err);
+            res.redirect('/students');
+            // res.status(500).send("Unable to update student: " + err);
         });
 });
 

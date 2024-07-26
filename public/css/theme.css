@@ -125,9 +125,10 @@ a:hover {
 }
 
 .navbar-nav .nav-item.active .nav-link {
-    background-color: #007bff; 
-    color: #fff !important; 
-    border-radius: 5px; 
+    background-color: #ffffff; 
+    color: #cb1174 !important; 
+    font-weight:700;
+    border-radius: 7px; 
   }
 
 legend {
