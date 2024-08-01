@@ -1,10 +1,10 @@
 /*********************************************************************************
-* WEB700 – Assignment 04
+* WEB700 – Assignment 06
 * I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part
 * of this assignment has been copied manually or electronically from any other source
 * (including 3rd party web sites) or distributed to other students.
 *
-* Name: Saroj Niraula Student ID: 154184238 Date: 07/16/2024
+* Name: Saroj Niraula Student ID: 154184238 Date: 08/1/2024
 *
 * Online (Vercel) Link: https://web700-app.vercel.app/
 *
